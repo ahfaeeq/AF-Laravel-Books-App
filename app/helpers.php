@@ -6,7 +6,11 @@ if (!function_exists('authorName')) {
   function authorName($id)
   {
     $author = Authors::find($id);
-    return $author;
+    if($author){
+      return $author->name;
+    } else {
+      return "Author isn't available";
+    }
   }
 }
 

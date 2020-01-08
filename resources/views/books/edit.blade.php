@@ -27,7 +27,7 @@
             <div class="form-group">
                 <label for="author">Author:</label>
                 <select class="form-control" name="author" required="true">
-                    <option value="{{$books->author}}">{{ authorName($books->author)->name }}</option>
+                    <option value="{{$books->author}}">{{ authorName($books->author) }}</option>
                     @foreach($authors as $tekAuthor)
                     <option value="{{$tekAuthor->id}}">{{$tekAuthor->name}}</option>
                     @endforeach
