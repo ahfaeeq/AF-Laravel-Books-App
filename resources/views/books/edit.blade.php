@@ -1,10 +1,9 @@
-@extends('base')
+@extends('layouts/app')
 
-@section('main')
+@section('content')
 <div class="row">
     <div class="col-sm-8 offset-sm-2">
-        <h1 class="display-3">Update a Book</h1>
-
+        <h2 class="mb-3">Update a Book</h2>
         @if ($errors->any())
         <div class="alert alert-danger">
             <ul>
@@ -13,7 +12,6 @@
                 @endforeach
             </ul>
         </div>
-        <br /> 
         @endif
         <form method="post" action="{{ route('books.update', $books->id) }}">
             @method('PATCH') 
@@ -21,17 +19,17 @@
             <div class="form-group">
 
                 <label for="name">Name:</label>
-                <input type="text" class="form-control" name="name" value={{ $books->name }} />
+                <input type="text" class="form-control" name="name" required="true" value={{ $books->name }} />
             </div>
 
             <div class="form-group">
                 <label for="release_date">Release Date:</label>
-                <input type="text" class="form-control" name="release_date" value={{ $books->release_date }} />
+                <input type="text" class="form-control" name="release_date" required="true" value={{ $books->release_date }} />
             </div>
 
             <div class="form-group">
                 <label for="author">Author:</label>
-                <input type="text" class="form-control" name="author" value={{ $books->author }} />
+                <input type="text" class="form-control" name="author" required="true" value={{ $books->author }} />
             </div>
            
             <button type="submit" class="btn btn-primary">Update</button>

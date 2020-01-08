@@ -1,6 +1,6 @@
-@extends('base')
+@extends('layouts/app')
 
-@section('main')
+@section('content')
 <div class="row">
   <div class="col-sm-12">
     @if(session()->get('success'))
@@ -10,11 +10,11 @@
     @endif
   </div>
   <div class="col-sm-12">
-      <h1 class="display-3">Available Books</h1>    
-      <div>
-        <a style="margin-bottom: 19px;" href="{{ route('books.create')}}" class="btn btn-primary">New contact</a>
-      </div>  
-
+      <h3 class="float-left">Available Books</h3>    
+      @auth
+        <a href="{{ route('books.create')}}" class="btn btn-primary float-right">Publish new Book</a>
+      @endauth
+      <div class="clearfix mb-3"></div>
         @foreach($books->chunk(4) as $books)
           <div class="row m-b-10">
               @foreach($books as $book)
@@ -23,12 +23,14 @@
                   <div class="card-body">
                     <h5 class="card-title">{{$book->name}}</h5>
                     <p class="card-text">Released on {{$book->release_date}} by {{$book->author}}</p>
+                    @auth
                     <form action="{{ route('books.destroy', $book->id)}}" method="post">
                         <a href="{{ route('books.edit',$book->id)}}" class="btn btn-sm btn-light">Edit</a>
                         @csrf
                         @method('DELETE')
                         <button class="btn btn-sm btn-light" type="submit">Delete</button>
-                      </form>
+                    </form>
+                    @endauth
                   </div>
                 </div>
               </div>

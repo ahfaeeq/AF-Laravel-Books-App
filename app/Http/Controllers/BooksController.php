@@ -7,6 +7,11 @@ use App\Books;
 
 class BooksController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth')->except(['index']);
+
+    }
     /**
      * Display a listing of the resource.
      *
@@ -48,7 +53,7 @@ class BooksController extends Controller
             'author' => $request->get('author')
         ]);
         $books->save();
-        return redirect('/books')->with('success', 'Book saved!');
+        return redirect('/')->with('success', 'Book saved!');
 
     }
 
