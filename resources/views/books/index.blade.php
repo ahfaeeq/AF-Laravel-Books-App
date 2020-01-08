@@ -22,7 +22,7 @@
                 <div class="card">
                   <div class="card-body">
                     <h5 class="card-title">{{$book->name}}</h5>
-                    <p class="card-text">Released on {{$book->release_date}} by {{$book->author}}</p>
+                    <p class="card-text">Released on {{$book->release_date}} by {{ authorName($book->author)->name }}</p>
                     @auth
                     <form action="{{ route('books.destroy', $book->id)}}" method="post">
                         <a href="{{ route('books.edit',$book->id)}}" class="btn btn-sm btn-light">Edit</a>

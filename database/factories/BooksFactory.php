@@ -6,7 +6,7 @@ use App\Books;
 $factory->define(Books::class, function (Faker $faker) {
     return [
         'name' => $faker->name,
-        'release_date' => $faker->dateTime,
-        'author' => $faker->numberBetween($min = 0, $max = 11)
+        'release_date' => $faker->date,
+        'author' => $faker->numberBetween($min = 1, $max = 10)
     ];
 });

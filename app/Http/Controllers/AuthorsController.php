@@ -3,16 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Books;
 use App\Authors;
 
-class BooksController extends Controller
+class AuthorsController extends Controller
 {
-
     public function __construct()
     {
         $this->middleware('auth')->except(['index']);
- 
+
     }
     /**
      * Display a listing of the resource.
@@ -21,9 +19,8 @@ class BooksController extends Controller
      */
     public function index()
     {
-        $books = Books::all();
         $authors = Authors::all();
-        return view('books.index', compact('books','authors'));
+        return view('authors.index', compact('authors'));
     }
 
     /**
@@ -33,8 +30,7 @@ class BooksController extends Controller
      */
     public function create()
     {
-        $authors = Authors::all();
-        return view('books.create', compact('authors'));
+        return view('authors.create');
     }
 
     /**
@@ -47,18 +43,17 @@ class BooksController extends Controller
     {
         $request->validate([
             'name'=>'required',
-            'release_date'=>'required',
-            'author'=>'required'
+            'age'=>'required',
+            'address'=>'required'
         ]);
 
-        $books = new Books([
+        $authors = new Authors([
             'name' => $request->get('name'),
-            'release_date' => $request->get('release_date'),
-            'author' => $request->get('author')
+            'age' => $request->get('age'),
+            'address' => $request->get('address')
         ]);
-        $books->save();
-        return redirect('/books')->with('success', 'Book saved!');
-    }
+        $authors->save();
+        return redirect('/authors')->with('success', 'Author saved!');    }
 
     /**
      * Display the specified resource.
@@ -79,10 +74,8 @@ class BooksController extends Controller
      */
     public function edit($id)
     {
-        $books = Books::find($id);
-        $authors = Authors::all();
-        return view('books.edit', compact('books','authors'));
-    }
+        $authors = Authors::find($id);
+        return view('authors.edit', compact('authors'));     }
 
     /**
      * Update the specified resource in storage.
@@ -95,18 +88,17 @@ class BooksController extends Controller
     {
         $request->validate([
             'name'=>'required',
-            'release_date'=>'required',
-            'author'=>'required'
+            'age'=>'required',
+            'address'=>'required'
         ]);
 
-        $book = Books::find($id);
-        $book->name =  $request->get('name');
-        $book->release_date = $request->get('release_date');
-        $book->author = $request->get('author');
-        $book->save();
+        $author = Authors::find($id);
+        $author->name =  $request->get('name');
+        $author->age = $request->get('age');
+        $author->address = $request->get('address');
+        $author->save();
 
-        return redirect('/books')->with('success', 'Book updated!');
-    }
+        return redirect('/authors')->with('success', 'Author updated!');    }
 
     /**
      * Remove the specified resource from storage.
@@ -116,10 +108,9 @@ class BooksController extends Controller
      */
     public function destroy($id)
     {
-        $books = Books::find($id);
-        $books->delete();
+        $authors = Authors::find($id);
+        $authors->delete();
 
-        return redirect('/books')->with('success', 'Book deleted!');
-
+        return redirect('/authors')->with('success', 'Author deleted!');
     }
 }

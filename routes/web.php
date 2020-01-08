@@ -1,5 +1,4 @@
 <?php
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,3 +13,4 @@
 Auth::routes();
 Route::get('/', 'HomeController@index')->name('home');
 Route::resource('books', 'BooksController');
+Route::resource('authors', 'AuthorsController');

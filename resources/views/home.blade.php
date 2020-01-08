@@ -16,7 +16,7 @@
             <a href="{{ route('books.index') }}" type="button" class="btn btn-primary btn-block text-white">Browse Books</a>
         </div>
         <div class="col-sm-4">
-            <a href="{{ route('books.index') }}" type="button" class="btn btn-primary btn-block text-white">Browse Authors</a>
+            <a href="{{ route('authors.index') }}" type="button" class="btn btn-primary btn-block text-white">Browse Authors</a>
         </div>
         <div class="col-sm-4">
             @guest
